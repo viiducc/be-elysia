@@ -8,7 +8,9 @@ export function create(config: DbConfig) {
     db: config.name,
     username: config.username,
     password: config.password,
-    ssl: config.ssl,
+    ssl: config.ssl ? {
+      rejectUnauthorized: false  // Allow self-signed certificates
+    } : false,
 
     // Performance optimizations
     max: 10,                    // Connection pool size
