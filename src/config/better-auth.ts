@@ -32,6 +32,7 @@ async function sha256Hex(value: string): Promise<string> {
 export const auth = betterAuth({
     baseURL: process.env.BETTER_AUTH_URL || 'http://localhost:3000',
     secret: process.env.BETTER_AUTH_SECRET || '',
+    trustedOrigins: ['*'], // Allow all origins for development
 
     database: drizzleAdapter(db, {
         provider: 'pg',
