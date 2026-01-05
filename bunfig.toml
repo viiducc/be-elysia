@@ -1,0 +1,7 @@
+[scripts]
+lint = "eslint . --ext .ts"
+format = "prettier --write ."
+test = "bun test"
+releasedocker = "./release-docker.sh -y"
+release:version = "bun run commit-and-tag-version --dry-run && read -p 'Confirm release actions? (Y/n) ' confirm; confirm=${confirm:-y} && (if [[ $confirm != \"y\" && $confirm != \"Y\" ]]; then echo ❌ Aborted; exit 1; fi) && commit-and-tag-version"
+release = "bun run release:version && npm run release:docker"

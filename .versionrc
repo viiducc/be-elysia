@@ -1,0 +1,12 @@
+{
+  "bumpFiles": [
+    {
+      "filename": "APP_VERSION",
+      "type": "plain-text"
+    },
+    {
+      "filename": "package.json",
+      "type": "json"
+    }
+  ]
+}

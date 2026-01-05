@@ -1,0 +1,45 @@
+{
+  "name": "agripos-backend",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "version": "0.0.1",
+  "scripts": {
+    "start": "bun run index.ts",
+    "db:generate": "drizzle-kit generate --config=./infrastructure/sql/drizzle-migrate/drizzle.config.ts",
+    "release:docker": "./release-docker.sh -y",
+    "release:version": "commit-and-tag-version --dry-run && read -p 'Confirm release actions? (Y/n) ' confirm; confirm=${confirm:-y} && (if [[ $confirm != \"y\" && $confirm != \"Y\" ]]; then echo ❌ Aborted; exit 1; fi) && commit-and-tag-version",
+    "release": "npm run release:version && npm run release:docker",
+    "format": "biome format --write .",
+    "format:check": "biome format .",
+    "lint": "biome lint .",
+    "lint:fix": "biome lint --write .",
+    "check": "biome check .",
+    "check:fix": "biome check --write ."
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.1.4",
+    "@types/bun": "latest",
+    "bun-types": "^1.2.19",
+    "commit-and-tag-version": "^12.5.2",
+    "drizzle-kit": "0.31.4",
+    "husky": "^9.1.7"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@elysiajs/cors": "^1.3.3",
+    "better-auth": "^1.3.27",
+    "@elysiajs/swagger": "^1.3.1",
+    "@react-email/components": "0.5.0",
+    "drizzle-orm": "^0.44.4",
+    "elysia": "^1.3.5",
+    "kysely": "^0.28.3",
+    "pino": "^9.7.0",
+    "postgres": "^3.4.7",
+    "prom-client": "^15.1.3",
+    "resend": "^6.0.1",
+    "zod": "^4.0.5"
+  }
+}

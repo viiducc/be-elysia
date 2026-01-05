@@ -1,0 +1,3 @@
+export const VERIFICATION_CODE_LENGTH = 6;
+export const VERIFICATION_CODE_EXPIRATION_TIME = 1000 * 60 * 60 * 1; // 1 hour
+export const VERIFICATION_CODE_MAX_ATTEMPTS = 3;

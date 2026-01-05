@@ -1,0 +1,11 @@
+// Internal error codes, only used internally, don't expose to frontend
+export enum DatabaseErrorCodes {
+  NOT_FOUND = 'NOT_FOUND',
+  CONFLICT = 'CONFLICT',
+  DUPLICATE_ENTRY = 'DUPLICATE_ENTRY',
+  FOREIGN_KEY_VIOLATION = 'FOREIGN_KEY_VIOLATION',
+  CHECK_VIOLATION = 'CHECK_VIOLATION',
+  NOT_NULL_VIOLATION = 'NOT_NULL_VIOLATION',
+  UNIQUE_VIOLATION = 'UNIQUE_VIOLATION',
+  UNKNOWN = 'UNKNOWN',
+}

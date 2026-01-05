@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:18
+    restart: unless-stopped
+    ports:
+      - ${DB_PORT-5432}:5432
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - agripos-network
+
+networks:
+  agripos-network:
+    driver: bridge
+
+volumes:
+  postgres_data:

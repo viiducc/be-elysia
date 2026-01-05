@@ -1,0 +1,35 @@
+# IDEs
+.vscode
+.idea
+.cursor
+.cursorrules
+
+# OS
+.DS_Store
+
+# dependencies (bun install)
+node_modules
+
+# output
+out
+dist
+*.tgz
+
+# code coverage
+coverage
+*.lcov
+
+# logs
+logs
+_.log
+report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
+
+# environment variable files
+.env
+.env.*
+!.*.example
+
+# caches
+.eslintcache
+.cache
+*.tsbuildinfo
