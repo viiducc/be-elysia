@@ -14,6 +14,29 @@ import { version } from './package.json' with { type: 'json' };
 import { auth } from './src/config/better-auth';
 
 /**
+ * Request logger middleware - logs each request on one line
+ */
+const formatTime = (date: Date) => {
+  const time = date.toTimeString().split(' ')[0];
+  const ms = date.getMilliseconds().toString().padStart(3, '0');
+  return `${time}.${ms}`;
+};
+
+const requestLogger = new Elysia({ name: 'request-logger' })
+  .derive({ as: 'global' }, () => ({
+    startTime: performance.now(),
+    requestAt: new Date()
+  }))
+  .onAfterResponse({ as: 'global' }, ({ request, set, startTime, requestAt }) => {
+    const responseAt = new Date();
+    const duration = (performance.now() - startTime).toFixed(2);
+    const method = request.method;
+    const path = new URL(request.url).pathname;
+    const status = set.status ?? 200;
+    console.log(` ${method} ${path}  - ${status} - [${formatTime(requestAt)} -> ${formatTime(responseAt)}] - ${duration}ms`);
+  });
+
+/**
  * Better Auth macro for protected routes
  */
 const betterAuthMacro = new Elysia({ name: 'better-auth-macro' })
@@ -41,6 +64,7 @@ export async function createApp() {
 
   const app = new Elysia()
     .use(corsMiddleware)
+    .use(requestLogger)
     .use(metricsMiddleware)
     .use(errorMiddleware)
     .use(betterAuthMacro)
