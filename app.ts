@@ -55,9 +55,13 @@ export async function createApp() {
     })
     .group('/api/v1', (app) => app.use(registerRoutes(sharedConfig)));
 
-  app.listen(sharedConfig.app.port);
+  app.listen({
+    port: sharedConfig.app.port,
+    hostname: sharedConfig.app.host,
+  });
 
-  console.log(`Server running at http://localhost:${sharedConfig.app.port}`);
+  console.log(`Server running at http://${sharedConfig.app.host}:${sharedConfig.app.port}`);
+  console.log(`Public URL: ${sharedConfig.app.publicUrl}`);
 
   return app;
 }

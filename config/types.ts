@@ -15,6 +15,7 @@ export interface LoggerConfig {
 
 export interface AppConfig {
   port: number;
+  host: string;
   env: string;
   version: string;
   publicUrl: string;
