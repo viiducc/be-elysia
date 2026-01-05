@@ -8,6 +8,7 @@ export class UserMapper implements IMapper<User> {
       id: domain.id,
       username: domain.username,
       email: domain.email,
+      fullName: domain.fullName,
       displayName: domain.displayName,
       isVerified: domain.isVerified,
       createdAt: domain.createdAt,
@@ -17,6 +18,7 @@ export class UserMapper implements IMapper<User> {
     return {
       id: dbResult.id,
       username: dbResult.username,
+      fullName: dbResult.fullName,
       displayName: dbResult.displayName,
       isVerified: dbResult.isVerified,
       createdAt: dbResult.createdAt,
@@ -30,6 +32,7 @@ export class UserMapper implements IMapper<User> {
   toUpdatePersistence(domain: User): Partial<InsertUserTable> {
     return {
       username: domain.username,
+      fullName: domain.fullName,
       displayName: domain.displayName,
       isVerified: domain.isVerified,
     };

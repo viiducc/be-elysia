@@ -29,6 +29,7 @@ export const user = pgTable('user', {
   // Auth extensions
   username: text('username').unique(),
   phoneNumber: text('phone_number').unique(),
+  fullName: text('full_name'),
 
   // RBAC: 1=User, 20=Mod, 40=Admin, 80=Platform, 100=Super
   roleLevel: integer('role_level').notNull().default(1),

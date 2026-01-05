@@ -5,6 +5,7 @@ export const users = pgTable('users', {
   id: text('id').notNull().primaryKey(),
   username: text('username').notNull().unique(),
   email: text('email').notNull().unique(),
+  fullName: text('full_name'),
   displayName: text('display_name').notNull().default(sql`email`),
   isVerified: boolean('is_verified').notNull().default(false),
   createdAt: timestamp('created_at').notNull().default(sql`now()`),
